@@ -6,17 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.fatec.appprodutos.R
-import br.edu.fatec.appprodutos.databinding.ActivityMain2Binding
 import br.edu.fatec.appprodutos.model.Produto
 
 class ProdutoAdapter (private val produtos:List<Produto>):RecyclerView.Adapter<ProdutoAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        private lateinit var binding: ActivityMain2Binding
-
-        val txvNome = binding.txvNome.text.toString()
-        val txvCategoria = binding.txvCategoria.text.toString()
-        val txvPreco = binding.txvPreco.text.toString().toDouble()
+        val txvNome: TextView = itemView.findViewById(R.id.txv_nome)
+        val txvCategoria: TextView = itemView.findViewById(R.id.txv_categoria)
+        val txvPreco: TextView = itemView.findViewById(R.id.txv_preco)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,9 +24,9 @@ class ProdutoAdapter (private val produtos:List<Produto>):RecyclerView.Adapter<P
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produto = produtos[position]
-        holder.txvNome.text = produto.titulo
-        holder.txvCategoria.text = produto.diretor
-        holder.txvPreco.text = produto
+        holder.txvNome.text = produto.nome
+        holder.txvCategoria.text = produto.categoria
+        holder.txvPreco.text = produto.preco.toString()
     }
 
     override fun getItemCount(): Int {

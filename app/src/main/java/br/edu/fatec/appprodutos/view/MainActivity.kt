@@ -1,9 +1,12 @@
 package br.edu.fatec.appprodutos.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.edu.fatec.appprodutos.dao.ProdutoDaoImpl
 import br.edu.fatec.appprodutos.databinding.ActivityMainBinding
+import br.edu.fatec.appprodutos.model.Produto
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
@@ -19,10 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
+        val dao = ProdutoDaoImpl()
+
 
         binding.btnCadastrar.setOnClickListener {
             val nome = binding.edtNome.text.toString()
-            val categoria = binding.edtCategoria.toString()
+            val categoria = binding.edtCategoria.text.toString()
             val preco = binding.edtPreco.text.toString().toDouble()
 
             val produto = hashMapOf(
@@ -35,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 .add(produto)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Sucesso!", Toast.LENGTH_SHORT).show()
+
+                    val itemProduto = Produto(nome, categoria, preco)
+                    dao.addProduto(itemProduto)
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Falha!", Toast.LENGTH_SHORT).show()
@@ -46,7 +54,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
+        binding.fabLista.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
 
     }
 }

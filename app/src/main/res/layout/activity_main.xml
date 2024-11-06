@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="Abrir Lista"
     tools:context=".view.MainActivity">
 
     <TextView
@@ -79,6 +80,9 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="44dp"
         android:clickable="true"
+        android:contentDescription="abrir lista"
+        android:focusable="true"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size" />

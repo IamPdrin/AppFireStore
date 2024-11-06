@@ -7,7 +7,11 @@ class ProdutoDaoImpl:ProdutoDao {
         private val produtos = mutableListOf<Produto>()
     }
 
-    override fun obterFilme(): List<Produto> {
+    override fun addProduto(produto: Produto) {
+        produtos.add(produto)
+    }
+
+    override fun obterProduto(): List<Produto> {
         return produtos
     }
 
